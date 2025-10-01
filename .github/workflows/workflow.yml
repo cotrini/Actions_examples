@@ -5,5 +5,8 @@ jobs:
     hello_world:
         runs-on: ubuntu-latest
         steps:
-            - run: cd..
-            - run: ls
+            - name: repostory clonation
+              uses: actions/checkout@v3
+            - run: python3 main.py
+            - run: ls -la
+
