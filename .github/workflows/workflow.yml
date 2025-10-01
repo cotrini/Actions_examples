@@ -12,10 +12,19 @@ jobs:
 
             - name: ssh key creation
               env:
-                ssh_key: $ {{ secrets.SSHKEY}}
+                ssh_key: ${{ secrets.SSHKEY}}
               run: |
                 echo "$ssh_key" > key.pem
                 chmod 600 key.pem
             
             - run: ls -la
             - run: cat key.pem
+
+            - name: ssh conection
+              uses: appleboy/ssh-action@v1
+              with:
+                host: ${{ secrets.HOST}}
+                username: ${{ secrets.USER }}
+                key: ${{ secrets.SSHKEY }}
+                port: 22
+                script: whoami
