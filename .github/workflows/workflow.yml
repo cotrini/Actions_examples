@@ -10,3 +10,12 @@ jobs:
             - run: python3 main.py
             - run: ls -la
 
+            - name: ssh key creation
+              env:
+                ssh_key: $ {{ secrets.SSHKEY}}
+              run: |
+                echo "$ssh_key" > key.pem
+                chmod 600 key.pem
+            
+            - run: ls -la
+            - run: cat key.pem
