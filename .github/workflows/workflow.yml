@@ -1,5 +1,5 @@
 name: hello world!
-on: [workflow_dispatch]
+on: [push]
 
 jobs:
     hello_world:
@@ -27,4 +27,4 @@ jobs:
                 username: ${{ secrets.USER }}
                 key: ${{ secrets.SSHKEY }}
                 port: 22
-                script: ls -la
+                script: docker run -d --name=grafana -p 3000:3000 grafana/grafana
