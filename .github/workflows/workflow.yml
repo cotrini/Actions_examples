@@ -1,30 +1,19 @@
 name: hello world!
-on: [push]
+on: 
+  push:
+    branches: [Mocking-Exercise]
 
 jobs:
-    hello_world:
+    weather_test:
         runs-on: ubuntu-latest
         steps:
             - name: repostory clonation
               uses: actions/checkout@v3
-            - run: python3 main.py
-            - run: ls -la
 
-            - name: ssh key creation
-              env:
-                ssh_key: ${{ secrets.SSHKEY}}
-              run: |
-                echo "$ssh_key" > key.pem
-                chmod 600 key.pem
-            
-            - run: ls -la
-            - run: cat key.pem
-
-            - name: ssh conection
-              uses: appleboy/ssh-action@v1
+            - uses: action/checkout@v4
               with:
-                host: ${{ secrets.HOST}}
-                username: ${{ secrets.USER }}
-                key: ${{ secrets.SSHKEY }}
-                port: 22
-                script: sudo docker run -d --name=grafanax -p 3001:3000 grafana/grafana
+                python-version: '3.10'
+
+            - run: pip install unittest
+
+            - run: python main_test.py
