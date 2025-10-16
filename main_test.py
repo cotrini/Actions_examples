@@ -1,6 +1,7 @@
 from main import get_weather
 import unittest
 from unittest.mock import patch
+from unittest import TestCase
 
 
 class Test_Weather_class(unittest, TestCase):
