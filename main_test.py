@@ -1,4 +1,4 @@
-from main import get_wather
+from main import get_weather
 import unittest
 from unittest.mock import patch
 
