@@ -3,7 +3,7 @@ name: Build and Publish Python Package to Nexus
 on:
   push:
     branches:
-      - nexus_class
+      - Actions_examples
 
 jobs:
   deploy:
